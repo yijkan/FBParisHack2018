@@ -18,3 +18,8 @@ request(options).then(fbRes => {
     }
     console.log(message);
 })
+
+
+
+const execSync = require('child_process').execSync;
+//var response = execSync('matlab -nodisplay -nojvm -nosplash -nodesktop -r "try, run (\'my_script.m\'), catch, exit(1), end, exit(0);"');

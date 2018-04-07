@@ -5,6 +5,7 @@ module.exports = {
   'username': '',
   'password': '',
   'version': '2018-03-16'
+}
 */
 
 var user = require('./watson-cred.js');
