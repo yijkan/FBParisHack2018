@@ -1,11 +1,15 @@
 var http = require('http');
+/* everyone makes a local watson-cred.js
+   in the following format:
+module.exports = {
+  'username': '',
+  'password': '',
+  'version': '2018-03-16'
+*/
 
+var user = require('./watson-cred.js');
 var NLU = require('watson-developer-cloud/natural-language-understanding/v1.js');
-var natural_language_understanding = new NLU({
-    'username': 'ff526fa0-8c44-49bb-9ef0-c1e1f7c52dd5',
-    'password': 'Fhdph6EbJIaJ',
-    'version': '2018-03-16'
-});
+var natural_language_understanding = new NLU(user);
 
 var text = "I'm so happy!";
 
@@ -29,7 +33,10 @@ natural_language_understanding.analyze(parameters, function(err, response) {
 	console.log(word_lengths);
 	http.createServer(function (req, res) {
 	    res.writeHead(200, {'Content-Type': 'text/html'});
-	    res.end('Hello World!');
+	    res.write('Emotions: ');
+	    res.write(JSON.stringify(response.emotion.document.emotion));
+	    res.write('Sentiment: ' + JSON.stringify(response.sentiment.document.score));
+	    res.end();
 	}).listen(8080);
     }
 });
