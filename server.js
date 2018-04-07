@@ -107,13 +107,13 @@ const server = https.createServer(httpsOptions, app).listen(port, () => {
 
 let analyse_text = function (result) {
   let watson_text = require('./watson-test.js');
-  console.log(result);
   let message = [];
   for (let i in result.data) {
     message.push(result.data[i].message);
   }
   watson_text = watson_text.analyse();
   let final_result = watson_text(message[2]);
+  console.log(message[2]);
 
   // const request = require('request-promise');
   // const user = require('./config.js');
