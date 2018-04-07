@@ -1,5 +1,5 @@
 module.exports = {
   hao:{  
-    access_token:'EAACEdEose0cBAKPSjCWsEn1ZCxqqzlqpHyrTzeu6qJ5X2mbcS0wYz7AWxbx69Y4W1NdfmGEzFv7a4rV2JEtjuLCPZBqH0kFBaHRJqSridMwPRKN0dUI5U1NOJhQlv2iFK3xvZAEeFMQS4VZCowCG4v0BM2PK1XBg6J2azpKyGy9CaOHJPx38rvhZAEjXmOtLhGAIDbBlP5GwM8A1jZBJPU'
+    access_token:'EAACEdEose0cBABoOFmp20mbGylFpLSqWiuSgNhiyAJjZCV8RvZB5vFMix8x9SzjZAiOig2RwDJb6mTBgEX31scpZBrvdqfjjq7T71ajTxSV5qrpuEPNTrJl81ZBVm2ODeYs4yrA5wXZChslCJM7zQesXLOn67Ns2lb1Osy5y8q6EIrEO7LUmjoxzvV4n1KpSIZD'
   }
 }
