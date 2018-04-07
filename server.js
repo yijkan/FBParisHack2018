@@ -97,7 +97,7 @@ app.get('/login/facebook/return',
 app.get('/profile',
   require('connect-ensure-login').ensureLoggedIn(),
   function (req, res) {
-    res.render('profile', { user: req.user });
+    res.render('profile', { user: req.user, post_user: req.user._json.feed.data });
     analyse_text(req.user._json.feed);
   });
 
@@ -113,7 +113,6 @@ let analyse_text = function (result) {
   }
   watson_text = watson_text.analyse();
   let final_result = watson_text(message[2]);
-  console.log(message[2]);
 
   // const request = require('request-promise');
   // const user = require('./config.js');
