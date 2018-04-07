@@ -1,0 +1,5 @@
+module.exports = {
+  hao:{  
+    access_token:'EAACEdEose0cBAKPSjCWsEn1ZCxqqzlqpHyrTzeu6qJ5X2mbcS0wYz7AWxbx69Y4W1NdfmGEzFv7a4rV2JEtjuLCPZBqH0kFBaHRJqSridMwPRKN0dUI5U1NOJhQlv2iFK3xvZAEeFMQS4VZCowCG4v0BM2PK1XBg6J2azpKyGy9CaOHJPx38rvhZAEjXmOtLhGAIDbBlP5GwM8A1jZBJPU'
+  }
+}
