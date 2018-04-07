@@ -1,0 +1,16 @@
+<p>
+Name: <%= user.displayName %><br/>
+Feed: <%= user._json.posts %><br/>
+<ul>
+    <% for (var i = 0; i < post_user.length; i++) { %>
+    <li>
+        <div>
+            <!-- <span class="time" style="font-weight:700;font-size:25px;line-height:20px;text-align:left;"> -->
+            <span>
+                <%= post_user[i].message %><br/> 
+            </span>
+        </div>
+    </li>
+    <% } %>
+</ul>
+</p>

@@ -1,5 +1,52 @@
-function [pitches, durations] = generate_notes(sadness, joy, fear, disgust, anger, sentiment, lens)
+function play_music(sadness, joy, fear, disgust, anger, sentiment, lens);
     assert(length(lens) > 1);
+    [pitches, durations] = generate_notes(sadness, joy, fear, disgust, anger, lens);
+    lambda = sentiment + 1;
+    f0 = 440; % frequency of A4
+    fe = 44100; % sampling rate
+    t = 0.5;
+    p = 0.5;
+    num_overtones = 3;
+    tone_dim = fe * t;
+    amps = zeros(num_overtones, 1);
+    i = 0; % number of notes that have been picked at any moment
+    music_wave = zeros(1, tone_dim * length(lens) * 8);
+    b = 0; % beats passed
+    mwl = length(music_wave);
+    while i < length(lens)
+        num_notes = poissrnd(lambda);
+        for j = 1:num_notes
+            if i >= length(lens)
+                break
+            end
+            i = i + 1;
+            num_beats = durations(i);
+            fn = f0 * 2^(pitches(i) / 12);
+            [y, ~] = calculsinus(fe, fn, t * num_beats, 1);
+            overtones = zeros(num_overtones, tone_dim * num_beats);
+            for k = 1:num_overtones
+                [y1, ~] = calculsinus(fe, fn * (1 + k), t * num_beats, 1);
+                overtones(k, :) = y1;
+                amps(k) = 2^(-k);
+            end
+            % with overtones
+            overtone_sum = sum(overtones .* repmat(amps, 1, tone_dim * num_beats));
+            y = y + overtone_sum;
+            [e] = env(fe, t * num_beats); % envelope
+            y = y .* e;
+            tone_wave = [zeros(1, b * tone_dim) y];
+            tone_wave = [tone_wave zeros(1, mwl - length(tone_wave))];
+            music_wave = music_wave + tone_wave;
+        end
+        b = b + 1;
+    end
+    music_wave = music_wave(1:find(music_wave,1,'last'));
+    sound(music_wave, fe);
+end
+
+            
+
+function [pitches, durations] = generate_notes(sadness, joy, fear, disgust, anger, lens)
     min_pitch = scale_int(sadness, -16, -8);
     max_pitch = scale_int(fear, 8, 16);
     range = max_pitch - min_pitch + 1;
@@ -20,11 +67,10 @@ function [pitches, durations] = generate_notes(sadness, joy, fear, disgust, ange
         pitches(i) = datasample(avail_pitches, 1);
         durations(i) = beats(lens(i), anger);
     end
-    pitches
-    durations
 end
 
 function beats = beats(wl, anger)
+    wl = min([wl 7]);
     beats = scale_int(wl^(anger + 1)/49, 1, 8);
 end
 
@@ -35,54 +81,6 @@ function scaled = scale_int(real, lower, upper)
 end
 
 function gamme()
-    %frequence de note C
-    f0 = 261.63;
-    fn = f0;
-    %frequence d'echantillonnage
-    fe = 100000;
-    t = 0.5;
-    p = 0.5;
-    n = 0;
-    % 2 4 5 7 9 11 12
-    %les notes de la chanson
-    n = [-1 4 7 11 9 7 6 7 -8 -1 4 7 11 14 17 7 17 17 19 15 14 15 12 -7 7 7 12 15 19];
-    i = 1;
-    [r, c] = size(n);
-    %determiner duree de chaque note et jouer
-    while(i < c + 1)
-        fn = f0 * 2^(n(i) / 12);
-        i = i + 1;
-        if i == 5 || i == 10 || i == 24
-            t = 0.75;
-            p = 1.25;
-        elseif i == 12 || i == 13 || i == 14 || i == 15 || i == 21 || i == 22 || i == 26 || i == 27 || i == 28 || i == 29
-            t = 0.25;
-            p = 0.25;
-        else
-            t = 0.5;
-            p = 0.5;
-        end
-        [y, ~] = calculsinus(fe, fn, t, 2);
-        
-        num_overtones = 4;
-        overtone_dim = fe * t;
-        overtones = zeros(num_overtones, overtone_dim);
-        amps = zeros(num_overtones, 1);
-        for j = 1:num_overtones
-            [y1,~] = calculsinus(fe,fn * (1 + i), t, 2);
-            overtones(i, :) = y1;
-            amps(i) = 2^(-i);
-        end
-        %creer l'enveloppe
-        [e] = env(fe, t);
-        %jouer la note avec l'enveloppe
-        %with overtones
-        overtone_sum = sum(overtones .* repmat(amps, 1, overtone_dim));
-        y = y + overtone_sum;
-        sound(y .* e, fe);
-        pause(p);
-    end
-
 end
 
 %enveloppe pour chaque note
