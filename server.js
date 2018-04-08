@@ -145,10 +145,10 @@ let analyse_text = function (result) {
         play.on('play', function (valid) {
           console.log('I just started playing!');
         });
-        play.sound('./matlab_scripts/output.wav');
+        play.sound('./output.wav');
       },
       function(error) {
-        print("error");
+        console.log("error");
       }
     );
   }
