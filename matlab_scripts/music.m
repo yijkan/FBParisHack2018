@@ -19,8 +19,13 @@ function music(posts)
         lambda = (sentiment + 1) / 2;
         amps = zeros(num_overtones, 1);
         i = 0; % number of notes that have been picked at any moment
+        num_notes = 0;
         while i < length(lens)
+            last_num_notes = num_notes;
             num_notes = poissrnd(lambda);
+            if num_notes == 0 & last_num_notes == 0
+                num_notes = 1;
+            end
             for j = 1:num_notes
                 if i >= length(lens)
                     break
@@ -60,7 +65,7 @@ function [pitches, durations] = generate_notes(sadness, joy, fear, disgust, ange
     min_pitch = scale_int(-sadness, -16, -8);
     max_pitch = scale_int(fear, 8, 16);
     range = max_pitch - min_pitch + 1;
-    max_step = scale_int(disgust, 1, 5);
+    max_step = scale_int(disgust, 4, 7);
     num_pitches = scale_int(joy, 3, 12);
     scale = randperm(12, num_pitches); % in an octave
     scale = [scale - 24 scale - 12 scale scale + 12]; % spanning more octaves
