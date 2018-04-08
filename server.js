@@ -138,8 +138,8 @@ let analyse_text = function (result) {
         // console.log(result);
         results.push(result);
         var stmt = mk_matlab_stmt(results);
-        // var response = execSync('matlab -nodisplay -nojvm -nosplash -nodesktop -r "' + stmt + '"');
-        var response = execSync('echo "' + stmt + '"');
+         var response = execSync('matlab -nodisplay -nojvm -nosplash -nodesktop -r "' + stmt + '"');
+        //var response = execSync('echo "' + stmt + '"');
         console.log(response.toString()); // prints echoed text to console
       },
       function(error) {
