@@ -175,7 +175,7 @@ let analyse_text = function (result) {
 function len_str(word_lengths) {
   let str = ", [";
   for (let i in word_lengths) {
-    str = " " +  str + word_lengths[i];
+    str = str + " " + word_lengths[i];
   }
   str = str + "]";
   return str;
