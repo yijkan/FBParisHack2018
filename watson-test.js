@@ -30,12 +30,12 @@ module.exports = {
                     } else {
                         var emotions = response.emotion.document.emotion;
                         var sentiment = response.sentiment.document.score;
-                        console.log('emotions');
-                        console.log(JSON.stringify(emotions, null, 2));
-                        console.log('sentiment');
-                        console.log(JSON.stringify(sentiment));
-                        console.log('word counts');
-                        console.log(word_lengths);
+                        // console.log('emotions');
+                        // console.log(JSON.stringify(emotions, null, 2));
+                        // console.log('sentiment');
+                        // console.log(JSON.stringify(sentiment));
+                        // console.log('word counts');
+                        // console.log(word_lengths);
 
                         resolve({ 'emotions': emotions, 'sentiment': sentiment, 'word_lengths': word_lengths });
                     }

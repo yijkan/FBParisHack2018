@@ -25,7 +25,7 @@ passport.use(new Strategy({
   clientID: 240447903194882 || process.env.CLIENT_ID,
   clientSecret: "015a9838fbcefb810c5d022b73226185" || process.env.CLIENT_SECRET,
   callbackURL: 'https://localhost:3000/login/facebook/return',
-  profileFields: ['displayName', 'feed.limit(5)']
+  profileFields: ['displayName', 'feed.limit(4)']
 },
   function (accessToken, refreshToken, profile, cb) {
     // In this example, the user's Facebook profile is supplied as the user
@@ -112,7 +112,7 @@ let analyse_text = function (result) {
   for (let i in result.data) {
     messages.push(result.data[i].message);
   }
-  console.log(messages);
+  // console.log(messages);
   watson_text = watson_text.analyse();
   let results = [];
   let promise;
@@ -122,12 +122,12 @@ let analyse_text = function (result) {
     } else {
       promise = promise.then(
         function(result) {
-          console.log(result);
+          // console.log(result);
           results.push(result);
           return watson_text(messages[i]);
         },
         function(error) {
-          print("error");
+          console.log("error");
         }
       );
     }
@@ -135,7 +135,7 @@ let analyse_text = function (result) {
   if (promise) {
     promise.then(
       function(result) {
-        console.log(result);
+        // console.log(result);
         results.push(result);
         var stmt = mk_matlab_stmt(results);
         // var response = execSync('matlab -nodisplay -nojvm -nosplash -nodesktop -r "' + stmt + '"');
