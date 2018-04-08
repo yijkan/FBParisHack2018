@@ -141,9 +141,11 @@ let analyse_text = function (result) {
         var response = execSync('matlab -nodisplay -nojvm -nosplash -nodesktop -r "' + stmt + '"');
         //var response = execSync('echo "' + stmt + '"');
 
-        const load = require('audio-loader');
-        const play = require('audio-play');
-        load('./matlab_scripts/output.wav').then(play, function(err) {console.log("fcuk");});
+        let player = require('play-sound')(opts = {})
+        player.play('./matlab_scripts/output.wav', function (err) {
+          if (err) throw err
+        });
+
       },
       function(error) {
         print("error");
