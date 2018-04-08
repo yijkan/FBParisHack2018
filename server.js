@@ -148,7 +148,7 @@ let analyse_text = function (result) {
         play.sound('./output.wav');
       },
       function(error) {
-        print("error");
+        console.log("error");
       }
     );
   }
