@@ -51,7 +51,7 @@ function music(posts)
     music_wave = music_wave / max(abs(music_wave));
     % sound(music_wave, fe);
     audiowrite('output.wav', music_wave, fe);
-    exit
+    quit;
 end
 
             

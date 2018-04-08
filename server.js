@@ -138,13 +138,9 @@ let analyse_text = function (result) {
         // console.log(result);
         results.push(result);
         var stmt = mk_matlab_stmt(results);
-        var response = execSync('matlab -nodisplay -nojvm -nosplash -nodesktop -r "' + stmt + ';quit"');
+        var response = execSync('matlab -nojvm -nosplash -nodesktop -r "' + stmt + '; open output.wav"');
+        console.log("finished matlab");
         //var response = execSync('echo "' + stmt + '"');
-
-        var Sound = require('node-aplay');
-        // fire and forget: 
-        console.log("started to play");
-        new Sound('./output.wav').play();
       },
       function(error) {
         console.log("error");
