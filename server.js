@@ -144,7 +144,7 @@ let analyse_text = function (result) {
         // console.log(response.toString());
         const player = require('node-wav-player');
         player.play({
-          path: './speech.wav',
+          path: './ouput.wav',
         }).then(() => {
           console.log('The wav file started to be played successfully.');
         }).catch((error) => {
