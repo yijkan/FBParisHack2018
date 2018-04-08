@@ -141,7 +141,7 @@ let analyse_text = function (result) {
         var response = execSync('matlab -nodisplay -nojvm -nosplash -nodesktop -r "' + stmt + '"');
         //var response = execSync('echo "' + stmt + '"');
 
-        let play = require('play').Play();
+        let play = require('play').Play;
         play.on('play', function (valid) {
           console.log('I just started playing!');
         });
