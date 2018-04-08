@@ -112,7 +112,7 @@ let analyse_text = function (result) {
     message.push(result.data[i].message);
   }
   watson_text = watson_text.analyse();
-  let final_result = watson_text(message[2]);
+  let final_result = watson_text(message[0]);
 
   // const request = require('request-promise');
   // const user = require('./config.js');

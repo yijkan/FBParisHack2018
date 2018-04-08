@@ -24,8 +24,17 @@ module.exports = {
                 if (err) {
                     console.log('error:', err);
                 } else {
-                    console.log(JSON.stringify(response, null, 2));
-                    console.log(word_lengths);
+                    let array_result = [];
+                    for (let key in response.emotion.document.emotion) {
+                        // check also if property is not inherited from prototype
+                        if (response.emotion.document.emotion.hasOwnProperty(key)) {
+                            array_result.push(response.emotion.document.emotion[key]);
+                        }
+                    }
+                    array_result.push(response.sentiment.document.score);
+                    array_result.push(word_lengths); 
+                    console.log(array_result);
+                    return array_result;
                 }
             });
         }
