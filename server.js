@@ -6,6 +6,7 @@ var passport = require('passport');
 var Strategy = require('passport-facebook').Strategy;
 const https = require('https');
 const fs = require('fs');
+const execSync = require('child_process').execSync;
 const port = 3000
 
 const httpsOptions = {
