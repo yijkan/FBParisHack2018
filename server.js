@@ -143,7 +143,7 @@ let analyse_text = function (result) {
 
         const load = require('audio-loader');
         const play = require('audio-play');
-        load('./matlab_scripts/output.wav').then(play);
+        load('./matlab_scripts/output.wav').then(play, function(err) {console.log("fcuk");});
       },
       function(error) {
         print("error");
