@@ -49,8 +49,9 @@ function music(posts)
     end
     music_wave = music_wave(1:find(music_wave, 1, 'last'));
     music_wave = music_wave / max(abs(music_wave));
-    sound(music_wave, fe);
-    % audiowrite(strcat(datestr(datetime('now')), '.wav'), music_wave, fe);
+    % sound(music_wave, fe);
+    audiowrite(strcat(datestr(datetime('now')), '.wav'), music_wave, fe);
+    exit
 end
 
             
@@ -119,5 +120,5 @@ function e = env(fe,temp)
         end
         i = i + 1;
     end
-    plot(t,e);
+    % plot(t,e);
 end
