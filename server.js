@@ -132,6 +132,7 @@ let analyse_text = function (result) {
       );
     }
   }
+  // get text analysed result
   if (promise) {
     promise.then(
       function(result) {
@@ -151,6 +152,7 @@ let analyse_text = function (result) {
           console.error(error);
         });
       },
+      //play the sound
       function(error) {
         console.log("error");
       }
