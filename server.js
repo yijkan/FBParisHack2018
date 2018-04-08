@@ -138,9 +138,18 @@ let analyse_text = function (result) {
         // console.log(result);
         results.push(result);
         var stmt = mk_matlab_stmt(results);
-        var response = execSync('matlab -nojvm -nosplash -nodesktop -r "' + stmt + '; open output.wav"');
+        var response = execSync('matlab -nojvm -nosplash -nodesktop -r "' + stmt + '"');
         console.log("finished matlab");
-        //var response = execSync('echo "' + stmt + '"');
+        // var response = execSync('echo "' + stmt + '"');
+        // console.log(response.toString());
+        const player = require('node-wav-player');
+        player.play({
+          path: './speech.wav',
+        }).then(() => {
+          console.log('The wav file started to be played successfully.');
+        }).catch((error) => {
+          console.error(error);
+        });
       },
       function(error) {
         console.log("error");
