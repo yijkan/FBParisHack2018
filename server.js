@@ -120,7 +120,7 @@ let analyse_text = function (result) {
       promise = watson_text(messages[0]);
     } else {
       promise = promise.then(
-          function(result) {
+        function(result) {
           console.log(result);
           results.push(result);
           return watson_text(messages[i]);
@@ -172,25 +172,25 @@ let analyse_text = function (result) {
 }
 
 function len_str(word_lengths) {
-    let str = " [";
-    for (let i in word_lengths) {
-        str = " " +  str + word_lengths[i];
-    }
-    str = str + "]}";
-    return str;
+  let str = ", [";
+  for (let i in word_lengths) {
+    str = " " +  str + word_lengths[i];
+  }
+  str = str + "]}";
+  return str;
 }
 
 function mk_list_item(obj) {
-    let str = "{" + obj.emotions.sadness + " " + obj.emotions.joy + " " + obj.emotions.fear + " ";
-    str = str + obj.emotions.disgust + " " + obj.emotions.anger + " " + obj.sentiment;
-    str = str + len_str(obj.word_lengths);
-    return str;
+  let str = "{" + obj.emotions.sadness + ", " + obj.emotions.joy + ", " + obj.emotions.fear + ", ";
+  str = str + obj.emotions.disgust + ", " + obj.emotions.anger + ", " + obj.sentiment;
+  str = str + len_str(obj.word_lengths);
+  return str;
 }
 
 function mk_matlab_stmt(obj_array) {
-    let str = "{";
-    for (let i in obj_array) {
-        str = str + mk_list_item(obj_array[i]) + " ";
-    }
-    return str + "}";
+  let str = "music({";
+  for (let i in obj_array) {
+    str = str + mk_list_item(obj_array[i]) + ", ";
+  }
+  return str + "})";
 }
