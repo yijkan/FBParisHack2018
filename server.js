@@ -172,25 +172,25 @@ let analyse_text = function (result) {
 }
 
 function len_str(word_lengths) {
-    let str = "";
+    let str = " [";
     for (let i in word_lengths) {
         str = " " +  str + word_lengths[i];
     }
-    str = str + "]";
+    str = str + "]}";
     return str;
 }
 
 function mk_list_item(obj) {
-    let str = "[" + obj.emotions.sadness + " " + obj.emotions.joy + " " + obj.emotions.fear + " ";
+    let str = "{" + obj.emotions.sadness + " " + obj.emotions.joy + " " + obj.emotions.fear + " ";
     str = str + obj.emotions.disgust + " " + obj.emotions.anger + " " + obj.sentiment;
     str = str + len_str(obj.word_lengths);
     return str;
 }
 
 function mk_matlab_stmt(obj_array) {
-    let str = "[";
+    let str = "{";
     for (let i in obj_array) {
         str = str + mk_list_item(obj_array[i]) + " ";
     }
-    return str + "]";
+    return str + "}";
 }
